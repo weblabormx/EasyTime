@@ -4,6 +4,12 @@ PHP Library to manage time
 ## Installation
 - With composer run `composer require weblabormx/easy-time` 
 
+### Basics
+First to use the package you will need to add the namespace:
+```php
+use WeblaborMX\EasyTime\EasyTime;
+```
+
 ## Creation
 To create an object you have the next options.
 ```php
