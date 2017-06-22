@@ -26,6 +26,10 @@ class EasyTime {
         return self::$time;
     }
 
+    public static function sum($object, $object2) {
+        return $object->addTime($object2);
+    }
+
     private static function secondsToTime($inputSeconds) {
 
         $secondsInAMinute = 60;

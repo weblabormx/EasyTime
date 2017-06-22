@@ -72,5 +72,48 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
+	public function testSumOfObjects() {
+
+		$time = EasyTime::createFromFormat('00:30:30');
+		$time2 = EasyTime::createFromFormat('01:03:05');
+		$sum = EasyTime::sum($time, $time2);
+		$this->assertEquals('01:33:35', $sum->format());
+
+		$time = $time->addTime($time2);
+		$this->assertEquals('01:33:35', $time->format());
+
+	}
+
+	public function testAdditionsAndSubstractions() {
+
+		$time = EasyTime::createFromFormat('00:30:30');
+		$time = $time->addSeconds(5);
+		$time = $time->addSecond();
+		$this->assertEquals('00:30:36', $time->format());
+		$time = $time->addMinutes(6);
+		$time = $time->addMinute();
+		$this->assertEquals('00:37:36', $time->format());
+		$time = $time->addHours(2);
+		$time = $time->addHour();
+		$this->assertEquals('03:37:36', $time->format());
+		$time = $time->addDays(2);
+		$time = $time->addDay();
+		$this->assertEquals('3:03:37:36', $time->format('full'));
+		$time = $time->subDays(2);
+		$time = $time->subDay();
+		$this->assertEquals('03:37:36', $time->format());
+		$time = $time->subHours(2);
+		$time = $time->subHour();
+		$this->assertEquals('00:37:36', $time->format());
+		$time = $time->subMinutes(6);
+		$time = $time->subMinute();
+		$this->assertEquals('00:30:36', $time->format());
+		$time = $time->subSeconds(5);
+		$time = $time->subSecond();
+		$this->assertEquals('00:30:30', $time->format());
+
+
+	}
+
 }
 ?> 

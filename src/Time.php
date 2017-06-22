@@ -45,6 +45,10 @@ class Time {
         return sprintf('%02d', $hour).':'.sprintf('%02d', $this->minute).':'.sprintf('%02d', $this->second);
     }
 
+    /**
+     * Convert to one kind of time
+     */
+
     public function getSeconds() {
         $seconds = $this->day*24*60*60;
         $seconds += $this->hour*60*60;
@@ -74,6 +78,10 @@ class Time {
         return $hours;
     }
 
+    /**
+     * Humans
+     */
+
     public function diffForHumans($lang = 'en') {
         $result = '';
         if($this->day > 1) {
@@ -101,5 +109,103 @@ class Time {
         }
         return $result;
     }
+
+    /**
+     * Sum of objects
+     */
+
+    public function addTime($time) {
+        $seconds = $this->getSeconds();
+        $seconds += $time->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    /**
+     * Additions
+     */
+
+    public function addSeconds($seconds) {
+        $seconds += $this->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function addSecond() {
+        return $this->addSeconds(1);
+    }
+
+    public function addMinutes($minutes) {
+        $seconds = $minutes*60;
+        $seconds += $this->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function addMinute() {
+        return $this->addMinutes(1);
+    }
+
+    public function addHours($hours) {
+        $seconds = $hours*60*60;
+        $seconds += $this->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function addHour() {
+        return $this->addHours(1);
+    }
+
+    public function addDays($day) {
+        $seconds = $day*24*60*60;
+        $seconds += $this->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function addDay() {
+        return $this->addDays(1);
+    }
+
+    /**
+     * Substractions
+     */
+
+    public function subSeconds($seconds) {
+        $result = $this->getSeconds();
+        $result -= $seconds;
+        return EasyTime::createFromSeconds($result);
+    }
+
+    public function subSecond() {
+        return $this->subSeconds(1);
+    }
+
+    public function subMinutes($minutes) {
+        $seconds = $this->getSeconds();
+        $seconds -= $minutes*60;
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function subMinute() {
+        return $this->subMinutes(1);
+    }
+
+    public function subHours($hours) {
+        $seconds = $this->getSeconds();
+        $seconds -= $hours*60*60;
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function subHour() {
+        return $this->subHours(1);
+    }
+
+    public function subDays($day) {
+        $seconds = $this->getSeconds();
+        $seconds -= $day*24*60*60;
+        return EasyTime::createFromSeconds($seconds);
+    }
+
+    public function subDay() {
+        return $this->subDays(1);
+    }
+
 }
 

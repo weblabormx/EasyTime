@@ -27,6 +27,41 @@ $time->day; 		// 2
 $time->getDays(); 	// 2.42 (Total days in all that time)
 ```
 
+## Sum of two objects
+There are two options to do it
+```php
+$time = EasyTime::createFromFormat('00:30:30');
+$time2 = EasyTime::createFromFormat('01:03:05');
+
+// First way
+$sum = EasyTime::sum($time, $time2);	// 01:33:35
+
+// Second Way
+$time = $time->addTime($time2); 	// 01:33:35
+```
+
+## Additions and Substractions
+If you want to add or substract any time you can do it.
+```php
+$time = EasyTime::createFromFormat('00:30:30');
+$time = $time->addSeconds(5);	// 0:00:30:35
+$time = $time->addSecond();		// 0:00:30:36
+$time = $time->addMinutes(6);	// 0:00:36:36
+$time = $time->addMinute();		// 0:00:37:36
+$time = $time->addHours(2);		// 0:02:37:36
+$time = $time->addHour(); 		// 0:03:37:36
+$time = $time->addDays(2);		// 2:03:37:36
+$time = $time->addDay();		// 3:03:37:36
+$time = $time->subDays(2);		// 1:03:37:36
+$time = $time->subDay();		// 0:03:37:36
+$time = $time->subHours(2);		// 0:01:37:36
+$time = $time->subHour();		// 0:00:37:36
+$time = $time->subMinutes(6);	// 0:00:31:36
+$time = $time->subMinute();		// 0:00:30:36
+$time = $time->subSeconds(5);	// 0:00:30:31
+$time = $time->subSecond();		// 0:00:30:30
+```
+
 ## Human Readable
 Get the human readable of a time
 ```php
