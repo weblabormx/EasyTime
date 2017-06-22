@@ -8,7 +8,7 @@ class Time {
     public $hour;
     public $minute;
     public $second; 
-    private $lang = [
+    protected $lang = [
         'en' => [
             'days' => 'days',
             'day' => 'day',
@@ -205,6 +205,24 @@ class Time {
 
     public function subDay() {
         return $this->subDays(1);
+    }
+
+    /**
+     * Operations
+     */
+
+    public function multiply($number) {
+        $seconds = $this->getSeconds();
+        $result = $seconds * $number;
+        $result = ceil($result);
+        return EasyTime::createFromSeconds($result);
+    }
+
+    public function divide($number) {
+        $seconds = $this->getSeconds();
+        $result = $seconds / $number;
+        $result = ceil($result);
+        return EasyTime::createFromSeconds($result);
     }
 
 }

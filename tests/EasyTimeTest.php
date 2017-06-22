@@ -112,6 +112,21 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 		$time = $time->subSecond();
 		$this->assertEquals('00:30:30', $time->format());
 
+	}
+
+	public function testOperations() {
+
+		$time = EasyTime::createFromFormat('00:30:31');
+		$time = $time->multiply(2); 
+		$this->assertEquals('01:01:02', $time->format());
+		$time = $time->divide(2); 
+		$this->assertEquals('00:30:31', $time->format());
+
+		$time = EasyTime::createFromFormat('00:30:31');
+		$time = $time->multiply(10.5); 
+		$this->assertEquals('05:20:26', $time->format());
+		$time = $time->divide(2); 
+		$this->assertEquals('02:40:13', $time->format());
 
 	}
 
