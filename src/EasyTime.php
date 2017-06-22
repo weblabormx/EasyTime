@@ -5,14 +5,10 @@ namespace WeblaborMX\EasyTime;
 class EasyTime {
 
     public static $time;
-    public static $pointer;
-
-    
 
     public static function create($days, $hours, $minutes, $seconds) {
         self::$time = new Time($days, $hours, $minutes, $seconds);
-        self::$pointer = new self;
-        return self::$pointer;
+        return self::$time;
     }
 
     public static function createFromFormat($data) {
@@ -21,25 +17,16 @@ class EasyTime {
             self::$time = new Time(0, $data[0], $data[1], $data[2]);
         if(count($data)>3)
             self::$time = new Time($data[0], $data[1], $data[2], $data[3]);
-        self::$pointer = new self;
-        return self::$pointer;
+        return self::$time;
     }
 
     public static function createFromSeconds($seconds) {
         $result = self::secondsToTime($seconds);
         self::$time = new Time($result['d'], $result['h'], $result['m'], $result['s']);
-        self::$pointer = new self;
-        return self::$pointer;
+        return self::$time;
     }
 
-    public function format($format = null) {
-        if(is_null($format))
-            $format = 'H:i:s';
-        return self::$time->format($format);
-
-    }
-
-    public static function secondsToTime($inputSeconds) {
+    private static function secondsToTime($inputSeconds) {
 
         $secondsInAMinute = 60;
         $secondsInAnHour  = 60 * $secondsInAMinute;
