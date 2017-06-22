@@ -58,7 +58,7 @@ $time = $time->subHours(2);		// 0:01:37:36
 $time = $time->subHour();		// 0:00:37:36
 $time = $time->subMinutes(6);		// 0:00:31:36
 $time = $time->subMinute();		// 0:00:30:36
-$time = $time->subSeconds(5);		/ 0:00:30:31
+$time = $time->subSeconds(5);		// 0:00:30:31
 $time = $time->subSecond();		// 0:00:30:30
 ```
 
