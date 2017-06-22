@@ -71,11 +71,11 @@ $time = $time->subSecond();		// 0:00:30:30
 ## Multiply and Divide
 ```php
 $time = EasyTime::createFromFormat('00:30:31');
-$time = $time->multiply(2); 	// 01:01:02
+$time = $time->multiply(2); 		// 01:01:02
 $time = $time->divide(2); 		// 00:30:31
 
 $time = EasyTime::createFromFormat('00:30:31');
-$time = $time->multiply(10.5); 	// 05:20:26
+$time = $time->multiply(10.5); 		// 05:20:26
 $time = $time->divide(2); 		// 02:40:13
 ```
 
