@@ -1,12 +1,15 @@
 # EasyTime
 PHP Library to manage time
 
+## Installation
+- With composer run `composer require weblabormx/easy-time` 
+
 ## Creation
-To create ab object you have the next options.
+To create an object you have the next options.
 ```php
 $time = EasyTime::createFromSeconds(20465);
 $time = EasyTime::createFromFormat('10:30:00');
-$time = EasyTime::createFromFormat('2:10:30:00');
+$time = EasyTime::createFromFormat('2:10:30:00'); // With days
 $time = EasyTime::create(0, 10,30,00); // Days, Hours, Minutes, Seconds
 ```
 
@@ -14,14 +17,14 @@ $time = EasyTime::create(0, 10,30,00); // Days, Hours, Minutes, Seconds
 You can get the exact second, minute, hour or day, or if you prefer you can convert all data just for one and get for example, the total minutes only.
 ```php
 $time = EasyTime::createFromFormat('2:10:30:00');
-$time->second; 			// 0
+$time->second; 		// 0
 $time->getSeconds(); 	// 210600 (Total seconds in all that time)
-$time->minute; 			// 30
+$time->minute; 		// 30
 $time->getMinutes(); 	// 3510 (Total minutes in all that time)
-$time->hour; 			// 10
-$time->getHours(); 		// 58.5 (Total hours in all that time)
-$time->day; 			// 2
-$time->getDays(); 		// 2.42 (Total days in all that time)
+$time->hour; 		// 10
+$time->getHours(); 	// 58.5 (Total hours in all that time)
+$time->day; 		// 2
+$time->getDays(); 	// 2.42 (Total days in all that time)
 ```
 
 ## Human Readable
