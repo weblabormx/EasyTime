@@ -44,9 +44,9 @@ $time = $time->addTime($time2); 	// 01:33:35
 If you want to add or substract any time you can do it.
 ```php
 $time = EasyTime::createFromFormat('00:30:30');
-$time = $time->addSeconds(5);	// 0:00:30:35
+$time = $time->addSeconds(5);		// 0:00:30:35
 $time = $time->addSecond();		// 0:00:30:36
-$time = $time->addMinutes(6);	// 0:00:36:36
+$time = $time->addMinutes(6);		// 0:00:36:36
 $time = $time->addMinute();		// 0:00:37:36
 $time = $time->addHours(2);		// 0:02:37:36
 $time = $time->addHour(); 		// 0:03:37:36
@@ -56,9 +56,9 @@ $time = $time->subDays(2);		// 1:03:37:36
 $time = $time->subDay();		// 0:03:37:36
 $time = $time->subHours(2);		// 0:01:37:36
 $time = $time->subHour();		// 0:00:37:36
-$time = $time->subMinutes(6);	// 0:00:31:36
+$time = $time->subMinutes(6);		// 0:00:31:36
 $time = $time->subMinute();		// 0:00:30:36
-$time = $time->subSeconds(5);	// 0:00:30:31
+$time = $time->subSeconds(5);		/ 0:00:30:31
 $time = $time->subSecond();		// 0:00:30:30
 ```
 
