@@ -1,11 +1,13 @@
 <?php
 
 use \WeblaborMX\EasyTime\EasyTime;
+use PHPUnit\Framework\TestCase;
 include_once 'tests/loader.php';
 
-class EasyTimeTest extends \PHPUnit_Framework_TestCase {
+class EasyTimeTest extends TestCase {
 
-	public function testCreateFromSeconds() {
+	public function testCreateFromSeconds() 
+	{
 
 		$time = EasyTime::createFromSeconds(20465);
 		$this->assertEquals('05:41:05', $time->format());
@@ -15,7 +17,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testCreateFromFormat() {
+	public function testCreateFromFormat() 
+	{
 
 		$time = EasyTime::createFromFormat('10:30:00');
 		$this->assertEquals('10:30:00', $time->format());
@@ -26,7 +29,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testCreate() {
+	public function testCreate() 
+	{
 
 		$time = EasyTime::create(0, 10,30,00);
 		$this->assertEquals('10:30:00', $time->format());
@@ -37,7 +41,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testGetFunctions() {
+	public function testGetFunctions()
+	{
 
 		$time = EasyTime::createFromFormat('2:10:30:00');
 		$this->assertEquals(0, $time->second);
@@ -48,10 +53,13 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(58.5, $time->getHours());
 		$this->assertEquals(2, $time->day);
 		$this->assertEquals(2.42, $time->getDays());
+		$this->assertEquals('58:30:00', $time->format());
+		$this->assertEquals('2:10:30:00', $time->format('full'));
 
 	}
 
-	public function testHumanFunctions() {
+	public function testHumanFunctions() 
+	{
 
 		$time = EasyTime::createFromFormat('2:10:30:00');
 		$this->assertEquals('2 days, 10 hours, 30 minutes', $time->diffForHumans());
@@ -72,7 +80,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testSumOfObjects() {
+	public function testSumOfObjects() 
+	{
 
 		$time = EasyTime::createFromFormat('00:30:30');
 		$time2 = EasyTime::createFromFormat('01:03:05');
@@ -84,7 +93,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testAdditionsAndSubstractions() {
+	public function testAdditionsAndSubstractions() 
+	{
 
 		$time = EasyTime::createFromFormat('00:30:30');
 		$time = $time->addSeconds(5);
@@ -114,7 +124,8 @@ class EasyTimeTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testOperations() {
+	public function testOperations() 
+	{
 
 		$time = EasyTime::createFromFormat('00:30:31');
 		$time = $time->multiply(2); 
