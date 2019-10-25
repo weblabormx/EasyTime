@@ -15,6 +15,7 @@ To create an object you have the next options.
 ```php
 $time = EasyTime::createFromSeconds(20465);
 $time = EasyTime::createFromFormat('10:30:00');
+$time = EasyTime::createFromFormat('32:10');
 $time = EasyTime::createFromFormat('2:10:30:00'); // With days
 $time = EasyTime::create(0, 10, 30, 00); // Days, Hours, Minutes, Seconds
 ```
@@ -33,6 +34,7 @@ $time->day; 		// 2
 $time->getDays(); 	// 2.42 (Total days in all that time)
 $time->format(); 	// '58:30:00'
 $time->format('full'); 	// '2:10:30:00'
+$time->format('short'); // '30:00'
 ```
 
 ## Sum of two objects

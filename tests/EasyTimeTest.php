@@ -8,42 +8,50 @@ class EasyTimeTest extends TestCase {
 
 	public function testCreateFromSeconds() 
 	{
-
 		$time = EasyTime::createFromSeconds(20465);
 		$this->assertEquals('05:41:05', $time->format());
 
 		$time = EasyTime::createFromSeconds(1640467);
 		$this->assertEquals('18:23:41:07', $time->format('full'));
 
+		$time = EasyTime::createFromSeconds(100);
+		$this->assertEquals('01:40', $time->format('short'));
 	}
 
 	public function testCreateFromFormat() 
 	{
-
 		$time = EasyTime::createFromFormat('10:30:00');
 		$this->assertEquals('10:30:00', $time->format());
 
 		$time = EasyTime::createFromFormat('2:10:30:00');
 		$this->assertEquals('58:30:00', $time->format());
 		$this->assertEquals('2:10:30:00', $time->format('full'));
+		$this->assertEquals('30:00', $time->format('short'));
 
+		$time = EasyTime::createFromFormat('32:10');
+		$this->assertEquals('00:32:10', $time->format());
+		$this->assertEquals('0:00:32:10', $time->format('full'));
+		$this->assertEquals('32:10', $time->format('short'));
 	}
 
 	public function testCreate() 
 	{
-
-		$time = EasyTime::create(0, 10,30,00);
+		$time = EasyTime::create(0, 10, 30, 00);
 		$this->assertEquals('10:30:00', $time->format());
 
 		$time = EasyTime::create(2, 10,30,00);
 		$this->assertEquals('58:30:00', $time->format());
 		$this->assertEquals('2:10:30:00', $time->format('full'));
+		$this->assertEquals('30:00', $time->format('short'));
 
+		$time = EasyTime::create(0, 0, 20, 10);
+		$this->assertEquals('00:20:10', $time->format());
+		$this->assertEquals('0:00:20:10', $time->format('full'));
+		$this->assertEquals('20:10', $time->format('short'));
 	}
 
 	public function testGetFunctions()
 	{
-
 		$time = EasyTime::createFromFormat('2:10:30:00');
 		$this->assertEquals(0, $time->second);
 		$this->assertEquals(210600, $time->getSeconds());
@@ -55,12 +63,10 @@ class EasyTimeTest extends TestCase {
 		$this->assertEquals(2.42, $time->getDays());
 		$this->assertEquals('58:30:00', $time->format());
 		$this->assertEquals('2:10:30:00', $time->format('full'));
-
 	}
 
 	public function testHumanFunctions() 
 	{
-
 		$time = EasyTime::createFromFormat('2:10:30:00');
 		$this->assertEquals('2 days, 10 hours, 30 minutes', $time->diffForHumans());
 		$this->assertEquals('2 days, 10 hours, 30 minutes', $time->diffForHumans('en'));
@@ -77,12 +83,10 @@ class EasyTimeTest extends TestCase {
 		$time = EasyTime::createFromFormat('01:01:32');
 		$this->assertEquals('1 hour, 1 minute', $time->diffForHumans());
 		$this->assertEquals('1 hora, 1 minuto', $time->diffForHumans('es'));
-
 	}
 
 	public function testSumOfObjects() 
 	{
-
 		$time = EasyTime::createFromFormat('00:30:30');
 		$time2 = EasyTime::createFromFormat('01:03:05');
 		$sum = EasyTime::sum($time, $time2);
@@ -90,12 +94,10 @@ class EasyTimeTest extends TestCase {
 
 		$time = $time->addTime($time2);
 		$this->assertEquals('01:33:35', $time->format());
-
 	}
 
 	public function testAdditionsAndSubstractions() 
 	{
-
 		$time = EasyTime::createFromFormat('00:30:30');
 		$time = $time->addSeconds(5);
 		$time = $time->addSecond();
@@ -121,12 +123,10 @@ class EasyTimeTest extends TestCase {
 		$time = $time->subSeconds(5);
 		$time = $time->subSecond();
 		$this->assertEquals('00:30:30', $time->format());
-
 	}
 
 	public function testOperations() 
 	{
-
 		$time = EasyTime::createFromFormat('00:30:31');
 		$time = $time->multiply(2); 
 		$this->assertEquals('01:01:02', $time->format());
@@ -138,8 +138,6 @@ class EasyTimeTest extends TestCase {
 		$this->assertEquals('05:20:26', $time->format());
 		$time = $time->divide(2); 
 		$this->assertEquals('02:40:13', $time->format());
-
 	}
-
 }
 ?> 
