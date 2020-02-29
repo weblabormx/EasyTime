@@ -34,6 +34,22 @@ class EasyTimeTest extends TestCase {
 		$this->assertEquals('32:10', $time->format('short'));
 	}
 
+	public function testParse() 
+	{
+		$time = EasyTime::parse('10:30:00');
+		$this->assertEquals('10:30:00', $time->format());
+
+		$time = EasyTime::parse('2:10:30:00');
+		$this->assertEquals('58:30:00', $time->format());
+		$this->assertEquals('2:10:30:00', $time->format('full'));
+		$this->assertEquals('30:00', $time->format('short'));
+
+		$time = EasyTime::parse('32:10');
+		$this->assertEquals('00:32:10', $time->format());
+		$this->assertEquals('0:00:32:10', $time->format('full'));
+		$this->assertEquals('32:10', $time->format('short'));
+	}
+
 	public function testCreate() 
 	{
 		$time = EasyTime::create(0, 10, 30, 00);
@@ -94,6 +110,35 @@ class EasyTimeTest extends TestCase {
 
 		$time = $time->addTime($time2);
 		$this->assertEquals('01:33:35', $time->format());
+	}
+
+	public function testSumOfObjectsEasier() 
+	{
+		$sum = EasyTime::sum('00:30:30', '01:03:05');
+		$this->assertEquals('01:33:35', $sum->format());
+
+		$sum = EasyTime::sum('00:30', '01:03');
+		$this->assertEquals('00:01:33', $sum->format());
+	}
+
+	public function testRestOfObjects() 
+	{
+		$time = EasyTime::createFromFormat('02:30:30');
+		$time2 = EasyTime::createFromFormat('01:03:05');
+		$sum = EasyTime::rest($time, $time2);
+		$this->assertEquals('01:27:25', $sum->format());
+
+		$time = $time->subTime($time2);
+		$this->assertEquals('01:27:25', $time->format());
+	}
+
+	public function testRestOfObjectsEasier() 
+	{
+		$sum = EasyTime::rest('02:30:30', '01:03:05');
+		$this->assertEquals('01:27:25', $sum->format());
+
+		$sum = EasyTime::rest('02:30', '01:03');
+		$this->assertEquals('00:01:27', $sum->format());
 	}
 
 	public function testAdditionsAndSubstractions() 

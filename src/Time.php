@@ -130,6 +130,13 @@ class Time
         return EasyTime::createFromSeconds($seconds);
     }
 
+    public function subTime($time) 
+    {
+        $seconds = $this->getSeconds();
+        $seconds -= $time->getSeconds();
+        return EasyTime::createFromSeconds($seconds);
+    }
+
     /**
      * Additions
      */

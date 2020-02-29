@@ -27,6 +27,11 @@ class EasyTime
         return self::$time;
     }
 
+    public static function parse($data)
+    {
+        return self::createFromFormat($data);
+    }
+
     public static function createFromSeconds($seconds) 
     {
         $result = self::secondsToTime($seconds);
@@ -36,7 +41,24 @@ class EasyTime
 
     public static function sum($object, $object2) 
     {
+        if(!is_object($object) || get_class($object)!='WeblaborMX\EasyTime\Time') {
+            $object = self::createFromFormat($object);
+        }
+        if(!is_object($object2) || get_class($object2)!='WeblaborMX\EasyTime\Time') {
+            $object2 = self::createFromFormat($object2);
+        }
         return $object->addTime($object2);
+    }
+
+    public static function rest($object, $object2) 
+    {
+        if(!is_object($object) || get_class($object)!='WeblaborMX\EasyTime\Time') {
+            $object = self::createFromFormat($object);
+        }
+        if(!is_object($object2) || get_class($object2)!='WeblaborMX\EasyTime\Time') {
+            $object2 = self::createFromFormat($object2);
+        }
+        return $object->subTime($object2);
     }
 
     private static function secondsToTime($inputSeconds) 

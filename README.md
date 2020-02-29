@@ -14,10 +14,14 @@ use WeblaborMX\EasyTime\EasyTime;
 To create an object you have the next options.
 ```php
 $time = EasyTime::createFromSeconds(20465);
-$time = EasyTime::createFromFormat('10:30:00');
-$time = EasyTime::createFromFormat('32:10');
+$time = EasyTime::createFromFormat('10:30:00'); // HH:ii:ss
+$time = EasyTime::createFromFormat('32:10'); // ii:ss
 $time = EasyTime::createFromFormat('2:10:30:00'); // With days
 $time = EasyTime::create(0, 10, 30, 00); // Days, Hours, Minutes, Seconds
+// Parse = createFromFormat
+$time = EasyTime::parse('10:30:00'); // HH:ii:ss
+$time = EasyTime::parse('32:10'); // ii:ss
+$time = EasyTime::parse('2:10:30:00'); // With days
 ```
 
 ## Getting Data
@@ -40,14 +44,25 @@ $time->format('short'); // '30:00'
 ## Sum of two objects
 There are two options to do it
 ```php
-$time = EasyTime::createFromFormat('00:30:30');
-$time2 = EasyTime::createFromFormat('01:03:05');
-
 // First way
-$sum = EasyTime::sum($time, $time2);	// 01:33:35
+$sum = EasyTime::sum('00:30:30', '01:03:05');	// 01:33:35
 
 // Second Way
+$time = EasyTime::createFromFormat('00:30:30');
+$time2 = EasyTime::createFromFormat('01:03:05');
 $time = $time->addTime($time2); 	// 01:33:35
+```
+
+## Rest of two objects
+There are two options to do it
+```php
+// First way
+$sum = EasyTime::rest('02:30:30', '01:03:05');	// 01:27:25
+
+// Second Way
+$time = EasyTime::createFromFormat('02:30:30');
+$time2 = EasyTime::createFromFormat('01:03:05');
+$time = $time->subTime($time2); 	// 01:27:25
 ```
 
 ## Additions and Substractions
