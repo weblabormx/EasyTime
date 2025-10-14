@@ -28,8 +28,11 @@ class Time
 
     public function __construct($day, $hour, $minute, $second) 
     {
-        if($second >= 60 || $minute >= 60 || $hour >= 24)
-            throw new \Exception("Error Format", 1);
+        if($second >= 60) {
+            throw new \Exception("Error Format: Seconds cannot have more or equal than 60", 1);
+        } else if($minute >= 60) {
+            throw new \Exception("Error Format: Minutes cannot have more or equal than 60", 1);
+        }
             
         $this->day = (int) $day;
         $this->hour = (int) $hour;
